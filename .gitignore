@@ -1,0 +1,10 @@
+__pycache__
+pythonenv*
+.python-version
+.coverage
+venv
+.venv
+.direnv
+.local
+.pre-commit-config.yaml
+**/site-packages

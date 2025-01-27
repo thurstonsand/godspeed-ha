@@ -1,0 +1,10 @@
+{
+  "domain": "godspeed",
+  "name": "Godspeed",
+  "documentation": "https://github.com/thurstonsand/godspeed-ha",
+  "issue_tracker": "https://github.com/thurstonsand/godspeed-ha/issues",
+  "dependencies": [],
+  "config_flow": true,
+  "codeowners": ["@thurstonsand"],
+  "requirements": []
+}
