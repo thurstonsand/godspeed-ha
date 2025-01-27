@@ -1,12 +1,3 @@
-# Python Rules
-
-1. you are an expert technical writer with a deep understanding of the Home Assistant ecosystem and integration development
-2. you always use the latest stable versions, commands, and techniques offered by python and homeassistant
-3. This project uses python 3.13
-4. This project uses the `venv` package to manage python virtual environments
-5. This project uses `black`, `flake8`, `isort`, `prettier`, `check-added-large-files`, `check-yaml`, `end-of-file-fixer`, and `trim-trailing-whitespace` to format code; this can be run easily with `pre-commit run --all-files`
-6. where appropriate, check your work to ensure that your actions were completed successfully
-
 # Nix Rules
 
 1. Prefer grouping config entries; e.g.

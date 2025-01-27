@@ -8,3 +8,4 @@ venv
 .local
 .pre-commit-config.yaml
 **/site-packages
+custom_components/old_godspeed

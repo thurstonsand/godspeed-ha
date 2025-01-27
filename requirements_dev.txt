@@ -1,7 +1,6 @@
-homeassistant
-black
 cookiecutter
-flake8
-isort
+homeassistant
+pip
 pre-commit
-reorder-python-imports
+pytest-asyncio
+ruff

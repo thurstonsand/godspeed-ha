@@ -31,36 +31,22 @@
         formatter = pkgs.alejandra;
 
         # Configure pre-commit hooks
-        pre-commit.settings.hooks = {
-          black = {
-            enable = true;
-            entry = "${venvDir}/bin/black ";
-            types_or = ["python"];
-            require_serial = true;
+        pre-commit.settings = {
+          excludes = ["custom_components/old_godspeed"]; # TODO: Remove this exclusion once old_godspeed folder is deleted
+          hooks = {
+            ruff = {
+              enable = true;
+              types = ["python"];
+            };
+            ruff-format = {
+              enable = true;
+              types = ["python"];
+            };
+            check-added-large-files.enable = true;
+            check-yaml.enable = true;
+            end-of-file-fixer.enable = true;
+            trim-trailing-whitespace.enable = true;
           };
-
-          flake8 = {
-            enable = true;
-            entry = "${venvDir}/bin/flake8 --format default ";
-            types_or = ["python"];
-            require_serial = true;
-          };
-
-          isort = {
-            enable = true;
-            entry = "${venvDir}/bin/isort ";
-            types_or = ["python"];
-          };
-
-          prettier = {
-            enable = true;
-            package = pkgs.nodePackages.prettier;
-          };
-
-          check-added-large-files.enable = true;
-          check-yaml.enable = true;
-          end-of-file-fixer.enable = true;
-          trim-trailing-whitespace.enable = true;
         };
 
         devShells.default = let
@@ -72,15 +58,13 @@
             nativeBuildInputs = with pkgs;
               [
                 alejandra
-                nodePackages.prettier
               ]
               ++ (with pythonPackages; [
-                pip
                 venvShellHook
                 virtualenv
               ]);
             postVenvCreation = ''
-              pip install -r ./requirements_test.txt
+              python -m pip install -r ./requirements_test.txt --upgrade
             '';
             shellHook = ''
               venvShellHook
@@ -91,7 +75,7 @@
               ${config.pre-commit.installationScript}
 
               echo "Godspeed development environment ready."
-              echo "Run 'pfmt' to format your code."
+              echo "Run 'pfmt'/'ptest' to format/test your code"
             '';
 
             postShellHook = ''
@@ -100,6 +84,13 @@
                 echo "#!/usr/bin/env bash
               pre-commit run --all-files" > "${venvDir}/bin/pfmt"
                 chmod +x "${venvDir}/bin/pfmt"
+              fi
+
+              # Define test command
+              if [ ! -f "${venvDir}/bin/ptest" ]; then
+                echo "#!/usr/bin/env bash
+              pytest --timeout=9 --durations=10 -n auto tests" > "${venvDir}/bin/ptest"
+                chmod +x "${venvDir}/bin/ptest"
               fi
 
               ln -sf ${python.sitePackages}/* "${venvDir}/lib/python3.13/site-packages"
