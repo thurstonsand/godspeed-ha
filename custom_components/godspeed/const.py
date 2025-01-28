@@ -4,7 +4,7 @@
 NAME = "Godspeed"
 DOMAIN = "godspeed"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.0.0"
+VERSION = "0.0.1"
 
 ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
 ISSUE_URL = "https://github.com/thurstonsand/godspeed-ha/issues"

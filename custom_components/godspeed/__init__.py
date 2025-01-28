@@ -9,11 +9,14 @@ import asyncio
 from datetime import timedelta
 import logging
 
+from homeassistant.components.todo import PLATFORM_SCHEMA
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import Config, HomeAssistant
+from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+import voluptuous as vol
 
 from .api import GodspeedApiClient
 from .const import CONF_PASSWORD, CONF_USERNAME, DOMAIN, PLATFORMS, STARTUP_MESSAGE
@@ -22,10 +25,12 @@ SCAN_INTERVAL = timedelta(seconds=30)
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
-
-async def async_setup(hass: HomeAssistant, config: Config):
-    """Set up this integration using YAML is not supported."""
-    return True
+CONF_API_KEY = "api_key"
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+    {
+        vol.Required(CONF_API_KEY): cv.string,
+    }
+)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):

@@ -34,21 +34,18 @@
         pre-commit.settings.hooks = {
           black = {
             enable = true;
-            entry = "${venvDir}/bin/black ";
             types_or = ["python"];
             require_serial = true;
           };
 
           flake8 = {
             enable = true;
-            entry = "${venvDir}/bin/flake8 --format default ";
             types_or = ["python"];
             require_serial = true;
           };
 
           isort = {
             enable = true;
-            entry = "${venvDir}/bin/isort ";
             types_or = ["python"];
           };
 
