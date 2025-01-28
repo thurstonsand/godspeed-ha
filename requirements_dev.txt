@@ -1,3 +1,4 @@
+pip
 homeassistant
 black
 cookiecutter
@@ -5,3 +6,4 @@ flake8
 isort
 pre-commit
 reorder-python-imports
+pytest-asyncio

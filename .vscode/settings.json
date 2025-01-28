@@ -1,5 +1,7 @@
 {
   "files.associations": {
     "*.yaml": "home-assistant"
-  }
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.autoImportCompletions": true
 }

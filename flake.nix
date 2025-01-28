@@ -72,12 +72,12 @@
                 nodePackages.prettier
               ]
               ++ (with pythonPackages; [
-                pip
+                # pip
                 venvShellHook
                 virtualenv
               ]);
             postVenvCreation = ''
-              pip install -r ./requirements_test.txt
+              python -m pip install -r ./requirements_test.txt --upgrade
             '';
             shellHook = ''
               venvShellHook

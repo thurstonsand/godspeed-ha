@@ -6,7 +6,7 @@ from homeassistant import config_entries, data_entry_flow
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.godspeed.const import (
+from custom_components.old_godspeed.const import (
     BINARY_SENSOR,
     DOMAIN,
     PLATFORMS,
